@@ -109,7 +109,7 @@ This week, you and your partner(s) will implement a basic full stack application
 - Install any necessary NPM packages and ensure that they are documented as dependencies in your `package.json`.
 - From the command line, navigate into your server repository and enter the command `heroku create <partner 1 initials>-<partner 2 initials>-booklist`. For example, Allie and Sam would create their instance with the following command: `heroku create ag-sh-booklist`.
   - You will see your URL in the terminal, such as `https://ag-sh-booklist.herokuapp.com`.
-  - In your model file (in the to-do demo, it is `task.js`), declare a variable named `__API_URL__`. This will be used in the AJAX requests within this file.
+  - In your model file declare a variable named `__API_URL__`. This will be used in the AJAX requests within this file.
   - Note that this variable has two underscores at the beginning and the end of its name.
   - **If you are testing locally,** this variable should be assigned to `http://localhost:3000` or any port of your choice.
   - **If you are testing the deployed frontend,** this variable should be assigned the URL of your deployed app.
