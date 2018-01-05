@@ -136,6 +136,10 @@ This week, you and your partner(s) will implement a basic full stack application
   - _Note: Unless the local database is pushed to Heroku again, these databases will not be in sync from this point on._
 - Ensure that you have an event listener set up to handle any error events on the client instance.
 
+*6. As a developer, I want the client to have the ability to request all resources from the database through a RESTful endpoint.*
+
+- Create a new endpoint at `GET /api/v1/books` which will retrieve an array of book objects from the database, limited to only the `book_id`, `title`, `author`, and `image_url`.
+
 
 *7. As a user, I want to display all of my books at once so that I can see everything in a single view.*
 
@@ -145,6 +149,20 @@ This week, you and your partner(s) will implement a basic full stack application
 - Create an About View for displaying content about you and your application.
 - Redeploy your application
 
+
+*8. As a user, I want a view which displays any error messages that occur during the usage of my book list application.*
+
+- Create an Error View:
+  - Enclose your code in an IFFE.
+  - Define a global variable called `error-view` and assign an empty object literal as it's value.
+  - Define a method on `errorView` called `initErrorPage` which takes an argument of `err` and does the following:
+    - Hides any element with a class of `container` (or the class you chose to use).
+    - Shows any element with a class of `error-view` (or the class you chose to use).
+    - Empties any content within the element with an id of `error-message` (or the id you chose to use).
+    - Compiles the Handlebars template with an id of `error-template`.
+    - Renders the `err` argument into the template, and appends it to an element with an id of `error-message`.
+- Define a function called `errorCallback` which takes an error object as an argument when invoked.
+  - Log the error and pass the error to the `errorView.initErrorPage` view method.
 
 *9. As a user, I want my books to be rendered dynamically so that I can view all of the books in my list.*
 
@@ -163,24 +181,6 @@ This week, you and your partner(s) will implement a basic full stack application
   - Define a method on `bookView` called `initIndexPage` which hides any element with a class of `container`, shows any element with a class of `book-view`, and maps over the Book instances stored in `Book.all` to render each and append them to an element with the id of `book-list`.
   - Using jQuery's `Document.ready` functionality, invoke `Book.fetchAll` when the DOM has loaded, and pass `bookView.initIndexPage` as it's argument.
 
-
-*8. As a user, I want a view which displays any error messages that occur during the usage of my book list application.*
-
-- Create an Error View:
-  - Enclose your code in an IFFE.
-  - Define a global variable called `error-view` and assign an empty object literal as it's value.
-  - Define a method on `errorView` called `initErrorPage` which takes an argument of `err` and does the following:
-    - Hides any element with a class of `container` (or the class you chose to use).
-    - Shows any element with a class of `error-view` (or the class you chose to use).
-    - Empties any content within the element with an id of `error-message` (or the id you chose to use).
-    - Compiles the Handlebars template with an id of `error-template`.
-    - Renders the `err` argument into the template, and appends it to an element with an id of `error-message`.
-- Define a function called `errorCallback` which takes an error object as an argument when invoked.
-  - Log the error and pass the error to the `errorView.initErrorPage` view method.
-
-*6. As a developer, I want the client to have the ability to request all resources from the database through a RESTful endpoint.*
-
-- Create a new endpoint at `GET /api/v1/books` which will retrieve an array of book objects from the database, limited to only the `book_id`, `title`, `author`, and `image_url`.
 
 *10. As a user, I want a simple, clean looking UI so that my application is easy to navigate.*
 
