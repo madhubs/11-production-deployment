@@ -32,6 +32,10 @@ Mac:     export DATABASE_URL=postgres://localhost:5432/books_app
 Windows: export DATABASE_URL=postgres://USER:PASSWORD@localhost:5432/books_app
 ```
 
+Note: For today can optionally put default values in your js file. 
+
+E.g. ```const PORT = process.env.PORT || 3000```
+
 _Your repositories must each include the following config files:_
 
 - `README.md` - with documentation regarding your lab and it's current state of development. Check the "documentation" section below for more details on how that should look **AT MINIMUM**
@@ -129,16 +133,16 @@ This week, you and your partner(s) will implement a basic full stack application
 *5. As a developer, I want the client application to have access to a deployed PostgreSQL database so the user data persists across application sessions.*
 
 - In Heroku, click on your booklist app and go to the Resources tab. Search for "Postgres" and provision the free version to your app. This will automatically populate the `DATABASE_URL` config var in the Settings tab. Navigate to the Settings tab to verify.
-  - While you are here, add the `CLIENT_URL` as a config var on Heroku.
 - Migrate your local database to Heroku, using the following format for your command: `heroku pg:push books_app DATABASE_URL --app <partner 1 initials>-<partner 2 initials>-booklist`
   - **If you are testing locally,** connect your client using your local database.
-  - **If you are testing the deployed backend,** connect your client to the DB using the defined `DATABSE_URL` environment variable.
+  - **If you are testing the deployed backend,** connect your client to the DB using the defined `DATABASE_URL` environment variable.
   - _Note: Unless the local database is pushed to Heroku again, these databases will not be in sync from this point on._
 - Ensure that you have an event listener set up to handle any error events on the client instance.
 
 *6. As a developer, I want the client to have the ability to request all resources from the database through a RESTful endpoint.*
 
 - Create a new endpoint at `GET /api/v1/books` which will retrieve an array of book objects from the database, limited to only the `book_id`, `title`, `author`, and `image_url`.
+- Add functionality to client code to make AJAX call to `GET /api/v1/books` and log the results.
 
 
 *7. As a user, I want to display all of my books at once so that I can see everything in a single view.*
@@ -146,8 +150,8 @@ This week, you and your partner(s) will implement a basic full stack application
 - Create a View container in your index.html file (for example, a `<section>`) for the following content:
   - List of all available books by author and title.
   - Include on the page the count of books that are in the DB.
-- Create an About View for displaying content about you and your application.
-- Redeploy your application
+
+**STRETCH GOALS**
 
 
 *8. As a user, I want a view which displays any error messages that occur during the usage of my book list application.*
@@ -181,8 +185,11 @@ This week, you and your partner(s) will implement a basic full stack application
   - Define a method on `bookView` called `initIndexPage` which hides any element with a class of `container`, shows any element with a class of `book-view`, and maps over the Book instances stored in `Book.all` to render each and append them to an element with the id of `book-list`.
   - Using jQuery's `Document.ready` functionality, invoke `Book.fetchAll` when the DOM has loaded, and pass `bookView.initIndexPage` as it's argument.
 
+*10. As a user I want to see know more about application*
 
-*10. As a user, I want a simple, clean looking UI so that my application is easy to navigate.*
+- Create an About View for displaying content about you and your application.
+
+*11. As a user, I want a simple, clean looking UI so that my application is easy to navigate.*
 
 - Style your site using a **mobile-only** approach. Use the provided wireframes as a general guideline for the _minimum styling requirements_, while adding your own personal taste and color palette.
 - Ensure the proper use of SMACCS principles.
