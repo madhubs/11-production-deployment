@@ -1,0 +1,22 @@
+{
+  "name": "books-301",
+  "version": "1.0.0",
+  "description": "Client App for the Code 301 Books API. ",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "minify-models": "./node_modules/.bin/minify scripts/models/* --out-dir ../../../../docs/11/demo/scripts/models",
+    "minify-views": "./node_modules/.bin/minify scripts/views/* --out-dir ../../../../docs/11/demo/scripts/views",
+    "minify-js": "npm run minify-models && npm run minify-views",
+    "minify-css": "./node_modules/.bin/cleancss styles/*.css  --output ../../../../docs/11/demo/styles/base.css",
+    "minify-html": "html-minifier --remove-comments --collapse-whitespace --process-scripts 'text/x-handlebars-template' --remove-optional-tags index.html -o ../../../../docs/11/demo/index.html",
+    "minify": "npm run minify-html && npm run minify-css && npm run minify-js"
+  },
+  "author": "Scott Schmidt, et al.",
+  "license": "Copyright Code Fellows 2017",
+  "dependencies": {
+    "babel-minify": "^0.2.0",
+    "clean-css-cli": "^4.1.10",
+    "html-minifier": "^3.5.7"
+  }
+}
