@@ -1,7 +1,7 @@
 'use strict';
 
 var app = app || {};
-var __API_URL__ = 'https://books301.herokuapp.com'; // TODO: Define the URL to your deployed API on Heroku
+var __API_URL__ = 'http://localhost:3000'; // TODO: Define the URL to your deployed API on Heroku
 
 (function(module) {
   function errorCallback(err) {
@@ -20,11 +20,21 @@ var __API_URL__ = 'https://books301.herokuapp.com'; // TODO: Define the URL to y
 
   Book.all = [];
   Book.loadAll = rows => Book.all = rows.sort((a, b) => b.title - a.title).map(book => new Book(book));
-
   Book.fetchAll = callback =>
     $.get(`${__API_URL__}/api/v1/books`)
       .then(Book.loadAll)
       .then(callback)
+      .catch(errorCallback);
+
+  Book.fetchOne = (ctx, callback) =>
+    $.get(`${__API_URL__}/api/v1/books/${ctx.params.book_id}`)
+      .then(results => ctx.book = results[0])
+      .then(callback)
+      .catch(errorCallback);
+
+  Book.create = book =>
+    $.post(`${__API_URL__}/api/v1/books`, book)
+      .then(() => page('/'))
       .catch(errorCallback);
 
   module.Book = Book;
